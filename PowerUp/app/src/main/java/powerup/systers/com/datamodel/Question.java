@@ -2,16 +2,16 @@ package powerup.systers.com.datamodel;
 
 public class Question {
 
-    private int questionID;
+    private int questionId;
     private String questionDescription;
-    private int scenarioID;
+    private int scenarioId;
 
-    public int getQuestionID() {
-        return questionID;
+    public int getQuestionId() {
+        return questionId;
     }
 
-    public void setQuestionID(int qId) {
-        this.questionID = qId;
+    public void setQuestionId(int qId) {
+        this.questionId = qId;
     }
 
     public String getQuestionDescription() {
@@ -22,11 +22,11 @@ public class Question {
         this.questionDescription = qDes;
     }
 
-    public int getScenarioID() {
-        return scenarioID;
+    public int getScenarioId() {
+        return scenarioId;
     }
 
-    public void setScenarioID(int scenarioID) {
-        this.scenarioID = scenarioID;
+    public void setScenarioId(int scenarioId) {
+        this.scenarioId = scenarioId;
     }
 }

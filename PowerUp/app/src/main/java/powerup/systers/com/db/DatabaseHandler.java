@@ -36,10 +36,10 @@ public class DatabaseHandler extends AbstractDbAdapter {
         if (cursor.moveToFirst()) {
             do {
                 Answer ans = new Answer();
-                ans.setAnswerID(cursor.getInt(0));
-                ans.setQuestionID(cursor.getInt(1));
+                ans.setAnswerId(cursor.getInt(0));
+                ans.setQuestionId(cursor.getInt(1));
                 ans.setAnswerDescription(cursor.getString(2));
-                ans.setNextQuestionID(cursor.getInt(3));
+                ans.setNextQuestionId(cursor.getInt(3));
                 ans.setPoints(cursor.getInt(4));
                 answers.add(ans);
             } while (cursor.moveToNext());
@@ -50,12 +50,12 @@ public class DatabaseHandler extends AbstractDbAdapter {
     public Question getCurrentQuestion() {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.QuestionEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.QuestionEntry.COLUMN_QUESTION_ID + " = "
-                + SessionHistory.currQID;
+                + SessionHistory.currQId;
         Cursor cursor = sDb.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             Question question = new Question();
-            question.setQuestionID(cursor.getInt(0));
-            question.setScenarioID(cursor.getInt(1));
+            question.setQuestionId(cursor.getInt(0));
+            question.setScenarioId(cursor.getInt(1));
             question.setQuestionDescription(cursor.getString(2));
             return question;
         }
@@ -66,7 +66,7 @@ public class DatabaseHandler extends AbstractDbAdapter {
     public Scenario getScenario() {
         String selectQuery = "SELECT  * FROM " + PowerUpContract.ScenarioEntry.TABLE_NAME +
                 " WHERE " + PowerUpContract.ScenarioEntry.COLUMN_ID + " = "
-                + SessionHistory.currSessionID;
+                + SessionHistory.currSessionId;
         Cursor cursor = sDb.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             Scenario scene = new Scenario();
@@ -75,9 +75,9 @@ public class DatabaseHandler extends AbstractDbAdapter {
             scene.setTimestamp(cursor.getString(2));
             scene.setAsker(cursor.getString(3));
             scene.setAvatar(cursor.getInt(4));
-            scene.setFirstQuestionID(cursor.getInt(5));
+            scene.setFirstQuestionId(cursor.getInt(5));
             scene.setCompleted(cursor.getInt(6));
-            scene.setNextScenarioID(cursor.getInt(7));
+            scene.setNextScenarioId(cursor.getInt(7));
             scene.setReplayed(cursor.getInt(8));
             return scene;
         }
@@ -97,9 +97,9 @@ public class DatabaseHandler extends AbstractDbAdapter {
             scene.setTimestamp(cursor.getString(2));
             scene.setAsker(cursor.getString(3));
             scene.setAvatar(cursor.getInt(4));
-            scene.setFirstQuestionID(cursor.getInt(5));
+            scene.setFirstQuestionId(cursor.getInt(5));
             scene.setCompleted(cursor.getInt(6));
-            scene.setNextScenarioID(cursor.getInt(7));
+            scene.setNextScenarioId(cursor.getInt(7));
             scene.setReplayed(cursor.getInt(8));
             return scene;
         }
@@ -117,8 +117,8 @@ public class DatabaseHandler extends AbstractDbAdapter {
             if (cursor.getInt(6) == 1) {
                 return false;
             }
-            SessionHistory.currSessionID = cursor.getInt(0);
-            SessionHistory.currQID = cursor.getInt(5);
+            SessionHistory.currSessionId = cursor.getInt(0);
+            SessionHistory.currQId = cursor.getInt(5);
             return true;
         }
         cursor.close();

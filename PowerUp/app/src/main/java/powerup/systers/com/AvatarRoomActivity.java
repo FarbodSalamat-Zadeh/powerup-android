@@ -251,7 +251,7 @@ public class AvatarRoomActivity extends Activity {
                 mDbHandler.updateComplete();//set all the complete fields back to 0
                 mDbHandler.updateReplayed();//set all the replayed fields back to 0
                 SessionHistory.totalPoints=0;    //reset the points stored
-                SessionHistory.currSessionID=1;
+                SessionHistory.currSessionId =1;
                 SessionHistory.currScenePoints=0;
                 mDbHandler.resetPurchase();
                 Random r = new Random();

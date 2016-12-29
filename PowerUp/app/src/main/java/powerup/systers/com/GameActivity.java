@@ -114,19 +114,19 @@ public class GameActivity extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View view,
                                             int position, long id) {
-                        if (mAnswers.get(position).getNextQuestionID() > 0) {
+                        if (mAnswers.get(position).getNextQuestionId() > 0) {
                             // Next Question
-                            SessionHistory.currQID = mAnswers.get(position)
-                                    .getNextQuestionID();
+                            SessionHistory.currQId = mAnswers.get(position)
+                                    .getNextQuestionId();
                             updatePoints(position);
                             updateQA();
 
                         } else {
-                            SessionHistory.currSessionID = mScene
-                                    .getNextScenarioID();
-                            if (SessionHistory.currSessionID == -1) {
+                            SessionHistory.currSessionId = mScene
+                                    .getNextScenarioId();
+                            if (SessionHistory.currSessionId == -1) {
                                 // Check to make sure all scenes are completed
-                                SessionHistory.currSessionID = 1;
+                                SessionHistory.currSessionId = 1;
                             }
                             updatePoints(position);
                             getmDbHandler().setCompletedScenario(
@@ -209,18 +209,18 @@ public class GameActivity extends Activity {
         }
         // If completed check if it is last mScene
         if (mPrevScene != null && mPrevScene.getCompleted() == 1) {
-            if (mScene.getNextScenarioID() == -1) {
+            if (mScene.getNextScenarioId() == -1) {
                 Intent myIntent = new Intent(GameActivity.this, GameOverActivity.class);
                 finish();
                 startActivityForResult(myIntent, 0);
             } else {
-                SessionHistory.currSessionID = mScene.getNextScenarioID();
+                SessionHistory.currSessionId = mScene.getNextScenarioId();
                 Intent intent = new Intent(GameActivity.this, ScenarioOverActivity.class);
                 intent.putExtra(String.valueOf(R.string.scene), mPrevScene.getScenarioName());
                 startActivity(intent);
             }
         }
-        SessionHistory.currQID = mScene.getFirstQuestionID();
+        SessionHistory.currQId = mScene.getFirstQuestionId();
         mScenarioNameTextView.setText(mScene.getScenarioName());
         updateQA();
     }
@@ -228,7 +228,7 @@ public class GameActivity extends Activity {
     private void updateQA() {
 
         mListAdapter.clear();
-        getmDbHandler().getAllAnswer(mAnswers, SessionHistory.currQID);
+        getmDbHandler().getAllAnswer(mAnswers, SessionHistory.currQId);
         for (Answer ans : mAnswers) {
             mListAdapter.add(ans.getAnswerDescription());
         }
