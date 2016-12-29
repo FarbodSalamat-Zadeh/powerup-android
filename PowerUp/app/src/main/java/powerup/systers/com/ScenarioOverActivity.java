@@ -17,6 +17,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
 
     public static Activity scenarioOverActivityInstance;
     public static int scenarioActivityDone;
+
     private DatabaseHandler mDbHandler;
 
     @Override
@@ -109,7 +110,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GameActivity.mGameActivityInstance.finish();
+                GameActivity.gameActivityInstance.finish();
                 startActivity(new Intent(ScenarioOverActivity.this, GameActivity.class));
             }
         });
@@ -118,6 +119,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        GameActivity.mGameActivityInstance.finish();
+        GameActivity.gameActivityInstance.finish();
     }
 }

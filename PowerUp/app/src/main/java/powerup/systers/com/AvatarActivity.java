@@ -148,12 +148,12 @@ public class AvatarActivity extends Activity implements View.OnClickListener {
                                 Boolean.TRUE);
                         edit.apply();
                     }
-                    AvatarRoomActivity.mAvatarRoomInstance.finish();
+                    AvatarRoomActivity.avatarRoomInstance.finish();
                     finish();
                     startActivityForResult(new Intent(AvatarActivity.this, MapActivity.class), 0);
                 } else {
-                    DressingRoomActivity.mDressingRoomInstance.finish();
-                    SelectFeaturesActivity.mSelectFeatureInstance.finish();
+                    DressingRoomActivity.dressingRoomInstance.finish();
+                    SelectFeaturesActivity.selectFeatureInstance.finish();
                     finish();
                     startActivityForResult(new Intent(AvatarActivity.this, MapActivity.class), 0);
                 }

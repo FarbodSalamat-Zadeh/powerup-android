@@ -13,7 +13,8 @@ import powerup.systers.com.db.DatabaseHandler;
 
 public class DressingRoomActivity extends AppCompatActivity {
 
-    public static Activity mDressingRoomInstance;
+    public static Activity dressingRoomInstance;
+
     private DatabaseHandler mDbHandler;
 
     @Override
@@ -22,7 +23,7 @@ public class DressingRoomActivity extends AppCompatActivity {
         setContentView(R.layout.dressing_room);
         mDbHandler = new DatabaseHandler(this);
         mDbHandler.open();
-        mDressingRoomInstance = this;
+        dressingRoomInstance = this;
         ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
         ImageView hairView = (ImageView) findViewById(R.id.hairView);

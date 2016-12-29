@@ -15,7 +15,8 @@ import powerup.systers.com.db.DatabaseHandler;
 
 public class AvatarRoomActivity extends Activity {
 
-    public static Activity mAvatarRoomInstance;
+    public static Activity avatarRoomInstance;
+
     private DatabaseHandler mDbHandler;
     private ImageView mEyeView;
     private ImageView mFaceView;
@@ -25,6 +26,7 @@ public class AvatarRoomActivity extends Activity {
     private ImageView mFaceAvatar;
     private ImageView mClothAvatar;
     private ImageView mHairAvatar;
+
     private int mEye = 1;
     private int mHair = 1;
     private int mFace = 1;
@@ -34,7 +36,7 @@ public class AvatarRoomActivity extends Activity {
         super.onCreate(savedInstanceState);
         mDbHandler = new DatabaseHandler(this);
         mDbHandler.open();
-        mAvatarRoomInstance = this;
+        avatarRoomInstance = this;
         setContentView(R.layout.avatar_room);
         mEyeView = (ImageView) findViewById(R.id.eyes);
         mFaceView = (ImageView) findViewById(R.id.face);

@@ -18,15 +18,16 @@ import powerup.systers.com.db.DatabaseHandler;
 
 public class SelectFeaturesActivity extends AppCompatActivity {
 
-    public static Activity mSelectFeatureInstance;
+    public static Activity selectFeatureInstance;
+
     private int mBag = 1;
-    int mGlasses = 1;
-    int mHat = 1;
-    int mNecklace = 1;
-    int mHatPurchased = 0;
-    int mGlassesPurchased = 0;
-    int mBagPurchased = 0;
-    int mNecklacePurchased = 0;
+    private int mGlasses = 1;
+    private int mHat = 1;
+    private int mNecklace = 1;
+    private int mHatPurchased = 0;
+    private int mGlassesPurchased = 0;
+    private int mBagPurchased = 0;
+    private int mNecklacePurchased = 0;
     private int mHair = 1;
     private int mAccessory = 1;
     private int mCloth = 1;
@@ -38,7 +39,7 @@ public class SelectFeaturesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_features);
         mDbHandler = new DatabaseHandler(this);
         mDbHandler.open();
-        mSelectFeatureInstance = this;
+        selectFeatureInstance = this;
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         LinearLayout linearLayoutHandbag = (LinearLayout) findViewById(R.id.linearLayouthandbag);
         LinearLayout linearLayoutGlasses = (LinearLayout) findViewById(R.id.linearLayoutGlasses);

@@ -23,7 +23,8 @@ import powerup.systers.com.db.DatabaseHandler;
 @SuppressLint("NewApi")
 public class GameActivity extends Activity {
 
-    public static Activity mGameActivityInstance;
+    public static Activity gameActivityInstance;
+
     private DatabaseHandler mDbHandler;
     private List<Answer> mAnswers;
     private Scenario mScene;
@@ -40,7 +41,7 @@ public class GameActivity extends Activity {
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
         setContentView(R.layout.game_activity);
-        mGameActivityInstance = this;
+        gameActivityInstance = this;
         // Find the ListView resource.
         ListView mainListView = (ListView) findViewById(R.id.mainListView);
         mQuestionTextView = (TextView) findViewById(R.id.questionView);

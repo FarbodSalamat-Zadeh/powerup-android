@@ -15,20 +15,21 @@ public abstract class AbstractDbAdapter {
     private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "PowerUpDB";
 
-    protected static SQLiteDatabase mDb;
-    private static BufferedReader mIn;
-    private static AssetManager mAssetManager;
+    protected static SQLiteDatabase sDb;
+    private static BufferedReader sIn;
+    private static AssetManager sAssetManager;
+
     protected final Context mContext;
     protected DatabaseHelper mDbHelper;
 
     public AbstractDbAdapter(Context ctx) {
         mContext = ctx;
-        mAssetManager = ctx.getAssets();
+        sAssetManager = ctx.getAssets();
         mDbHelper = new DatabaseHelper(mContext);
     }
 
     public AbstractDbAdapter open() throws SQLException {
-        mDb = mDbHelper.getWritableDatabase();
+        sDb = mDbHelper.getWritableDatabase();
         return this;
     }
 
@@ -164,68 +165,68 @@ public abstract class AbstractDbAdapter {
 
         public void readCSVQuestion(SQLiteDatabase db, String filename)
                 throws IOException {
-            mIn = new BufferedReader(new InputStreamReader(
-                    mAssetManager.open(filename)));
+            sIn = new BufferedReader(new InputStreamReader(
+                    sAssetManager.open(filename)));
             String reader;
-            while ((reader = mIn.readLine()) != null) {
+            while ((reader = sIn.readLine()) != null) {
                 String[] RowData = reader.split(",");
                 insertDBQuestion(db, RowData);
             }
-            mIn.close();
+            sIn.close();
         }
 
         public void readCSVAnswer(SQLiteDatabase db, String filename)
                 throws IOException {
-            mIn = new BufferedReader(new InputStreamReader(
-                    mAssetManager.open(filename)));
+            sIn = new BufferedReader(new InputStreamReader(
+                    sAssetManager.open(filename)));
             String reader;
-            while ((reader = mIn.readLine()) != null) {
+            while ((reader = sIn.readLine()) != null) {
                 String[] RowData = reader.split(",");
                 insertDBAnswer(db, RowData);
             }
-            mIn.close();
+            sIn.close();
         }
 
         public void readCSVScenario(SQLiteDatabase db, String filename)
                 throws IOException {
-            mIn = new BufferedReader(new InputStreamReader(
-                    mAssetManager.open(filename)));
+            sIn = new BufferedReader(new InputStreamReader(
+                    sAssetManager.open(filename)));
             String reader;
-            while ((reader = mIn.readLine()) != null) {
+            while ((reader = sIn.readLine()) != null) {
                 String[] RowData = reader.split(",");
                 insertDBScenario(db, RowData);
             }
-            mIn.close();
+            sIn.close();
         }
 
         public void readCSVClothes(SQLiteDatabase db, String filename) throws IOException {
-            mIn = new BufferedReader(new InputStreamReader(mAssetManager.open(filename)));
+            sIn = new BufferedReader(new InputStreamReader(sAssetManager.open(filename)));
             String reader;
-            while ((reader = mIn.readLine()) != null) {
+            while ((reader = sIn.readLine()) != null) {
                 String[] RowData = reader.split(",");
                 insertDBClothes(db, RowData);
             }
-            mIn.close();
+            sIn.close();
         }
 
         public void readCSVHair(SQLiteDatabase db, String filename) throws IOException {
-            mIn = new BufferedReader(new InputStreamReader(mAssetManager.open(filename)));
+            sIn = new BufferedReader(new InputStreamReader(sAssetManager.open(filename)));
             String reader;
-            while ((reader = mIn.readLine()) != null) {
+            while ((reader = sIn.readLine()) != null) {
                 String[] RowData = reader.split(",");
                 insertDBHair(db, RowData);
             }
-            mIn.close();
+            sIn.close();
         }
 
         public void readCSVAccessories(SQLiteDatabase db, String filename) throws IOException {
-            mIn = new BufferedReader(new InputStreamReader(mAssetManager.open(filename)));
+            sIn = new BufferedReader(new InputStreamReader(sAssetManager.open(filename)));
             String reader;
-            while ((reader = mIn.readLine()) != null) {
+            while ((reader = sIn.readLine()) != null) {
                 String[] RowData = reader.split(",");
                 insertDBAccessories(db, RowData);
             }
-            mIn.close();
+            sIn.close();
         }
 
         @Override
