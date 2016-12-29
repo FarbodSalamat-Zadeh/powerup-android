@@ -23,11 +23,14 @@ public class ScenarioOverActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_scenario_over);
+
         mDbHandler = new DatabaseHandler(this);
         mDbHandler.open();
-        setContentView(R.layout.activity_scenario_over);
+
         scenarioOverActivityInstance = this;
         scenarioActivityDone = 1;
+
         ImageButton continueButton = (ImageButton) findViewById(R.id.continueButton);
         Button homeButton = (Button) findViewById(R.id.homeButton);
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +46,7 @@ public class ScenarioOverActivity extends AppCompatActivity {
         ImageView faceImageView = (ImageView) findViewById(R.id.faceView);
         ImageView hairImageView = (ImageView) findViewById(R.id.hairView);
         ImageView clothImageView = (ImageView) findViewById(R.id.clothView);
+
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + mDbHandler.getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -52,7 +56,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             eyeImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -63,7 +66,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             faceImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -74,7 +76,6 @@ public class ScenarioOverActivity extends AppCompatActivity {
             clothImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -85,26 +86,30 @@ public class ScenarioOverActivity extends AppCompatActivity {
             hairImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
+        IconRoundCornerProgressBar powerBarHealing =
+                (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
         powerBarHealing.setIconImageResource(R.drawable.icon_healing);
         powerBarHealing.setIconBackgroundColor(R.color.powerup_purple_light);
         powerBarHealing.setProgress(mDbHandler.getHealing());
 
-        IconRoundCornerProgressBar powerbarInvisibility = (IconRoundCornerProgressBar) findViewById(R.id.powerbarInvisibility);
-        powerbarInvisibility.setIconImageResource(R.drawable.icon_invisibility);
-        powerbarInvisibility.setProgress(mDbHandler.getInvisibility());
+        IconRoundCornerProgressBar powerBarInvisibility =
+                (IconRoundCornerProgressBar) findViewById(R.id.powerbarInvisibility);
+        powerBarInvisibility.setIconImageResource(R.drawable.icon_invisibility);
+        powerBarInvisibility.setProgress(mDbHandler.getInvisibility());
 
-        IconRoundCornerProgressBar powerbarStrength = (IconRoundCornerProgressBar) findViewById(R.id.powerbarStrength);
-        powerbarStrength.setIconImageResource(R.drawable.icon_strength);
-        powerbarStrength.setProgress(mDbHandler.getStrength());
+        IconRoundCornerProgressBar powerBarStrength =
+                (IconRoundCornerProgressBar) findViewById(R.id.powerbarStrength);
+        powerBarStrength.setIconImageResource(R.drawable.icon_strength);
+        powerBarStrength.setProgress(mDbHandler.getStrength());
 
-        IconRoundCornerProgressBar powerbarTelepathy = (IconRoundCornerProgressBar) findViewById(R.id.powerbarTelepathy);
-        powerbarTelepathy.setIconImageResource(R.drawable.icon_telepathy);
-        powerbarTelepathy.setProgress(mDbHandler.getTelepathy());
+        IconRoundCornerProgressBar powerBarTelepathy =
+                (IconRoundCornerProgressBar) findViewById(R.id.powerbarTelepathy);
+        powerBarTelepathy.setIconImageResource(R.drawable.icon_telepathy);
+        powerBarTelepathy.setProgress(mDbHandler.getTelepathy());
+
         scenarioTextView.setText("Current Scene: " + getIntent().getExtras().getString(String.valueOf(R.string.scene)));
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
         continueButton.setOnClickListener(new View.OnClickListener() {

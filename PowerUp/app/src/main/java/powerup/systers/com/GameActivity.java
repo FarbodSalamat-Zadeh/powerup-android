@@ -38,23 +38,27 @@ public class GameActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.game_activity);
+
         setmDbHandler(new DatabaseHandler(this));
         getmDbHandler().open();
-        setContentView(R.layout.game_activity);
+
         gameActivityInstance = this;
+
         // Find the ListView resource.
         ListView mainListView = (ListView) findViewById(R.id.mainListView);
         mQuestionTextView = (TextView) findViewById(R.id.questionView);
         mScenarioNameTextView = (TextView) findViewById(R.id.scenarioNameEditText);
-        mListAdapter = new ArrayAdapter<>(this, R.layout.simplerow,
-                new ArrayList<String>());
+        mListAdapter = new ArrayAdapter<>(this, R.layout.simplerow, new ArrayList<String>());
         mAnswers = new ArrayList<>();
         mGoToMap = (Button) findViewById(R.id.continueButtonGoesToMap);
         mReplay = (Button) findViewById(R.id.redoButton);
+
         ImageView eyeImageView = (ImageView) findViewById(R.id.eyeImageView);
         ImageView faceImageView = (ImageView) findViewById(R.id.faceImageView);
         ImageView hairImageView = (ImageView) findViewById(R.id.hairImageView);
         ImageView clothImageView = (ImageView) findViewById(R.id.clothImageView);
+
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + getmDbHandler().getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -64,7 +68,6 @@ public class GameActivity extends Activity {
             eyeImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -75,7 +78,6 @@ public class GameActivity extends Activity {
             faceImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -86,7 +88,6 @@ public class GameActivity extends Activity {
             clothImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -97,16 +98,16 @@ public class GameActivity extends Activity {
             hairImageView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        // Update Scene
+        // Update scene
         updateScenario();
         if (mScene.getReplayed() == 1) {
             mGoToMap.setAlpha((float) 0.0);
             mReplay.setAlpha((float) 0.0);
         }
+
         // Set the ArrayAdapter as the ListView's adapter.
         mainListView.setAdapter(mListAdapter);
         mainListView
@@ -136,37 +137,48 @@ public class GameActivity extends Activity {
                         }
                     }
                 });
-        IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
+
+        IconRoundCornerProgressBar powerBarHealing =
+                (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
         powerBarHealing.setIconImageResource(R.drawable.icon_healing);
         powerBarHealing.setIconBackgroundColor(R.color.powerup_purple_light);
         powerBarHealing.setProgress(mDbHandler.getHealing());
 
-        IconRoundCornerProgressBar powerbarInvisibility = (IconRoundCornerProgressBar) findViewById(R.id.powerbarInvisibility);
-        powerbarInvisibility.setIconImageResource(R.drawable.icon_invisibility);
-        powerbarInvisibility.setProgress(mDbHandler.getInvisibility());
+        IconRoundCornerProgressBar powerBarInvisibility =
+                (IconRoundCornerProgressBar) findViewById(R.id.powerbarInvisibility);
+        powerBarInvisibility.setIconImageResource(R.drawable.icon_invisibility);
+        powerBarInvisibility.setProgress(mDbHandler.getInvisibility());
 
-        IconRoundCornerProgressBar powerbarStrength = (IconRoundCornerProgressBar) findViewById(R.id.powerbarStrength);
-        powerbarStrength.setIconImageResource(R.drawable.icon_strength);
-        powerbarStrength.setProgress(mDbHandler.getStrength());
+        IconRoundCornerProgressBar powerBarStrength =
+                (IconRoundCornerProgressBar) findViewById(R.id.powerbarStrength);
+        powerBarStrength.setIconImageResource(R.drawable.icon_strength);
+        powerBarStrength.setProgress(mDbHandler.getStrength());
 
-        IconRoundCornerProgressBar powerbarTelepathy = (IconRoundCornerProgressBar) findViewById(R.id.powerbarTelepathy);
-        powerbarTelepathy.setIconImageResource(R.drawable.icon_telepathy);
-        powerbarTelepathy.setProgress(mDbHandler.getTelepathy());
+        IconRoundCornerProgressBar powerBarTelepathy =
+                (IconRoundCornerProgressBar) findViewById(R.id.powerbarTelepathy);
+        powerBarTelepathy.setIconImageResource(R.drawable.icon_telepathy);
+        powerBarTelepathy.setProgress(mDbHandler.getTelepathy());
     }
 
     private void updatePoints(int position) {
-        // Update the Scene Points
+        // Update the scene points
         SessionHistory.currScenePoints += mAnswers.get(position).getPoints();
-        // Update Total Points
+
+        // Update total points
         SessionHistory.totalPoints += mAnswers.get(position).getPoints();
     }
 
     private void updateScenario() {
-        if (ScenarioOverActivity.scenarioActivityDone == 1)
+        if (ScenarioOverActivity.scenarioActivityDone == 1) {
             ScenarioOverActivity.scenarioOverActivityInstance.finish();
-        if (mScene != null)
+        }
+
+        if (mScene != null) {
             mPrevScene = getmDbHandler().getScenarioFromID(mScene.getId());
+        }
+
         mScene = getmDbHandler().getScenario();
+
         // Replay a scenario
         if (mScene.getReplayed() == 0) {
             // mGoToMap Mechanics
@@ -174,39 +186,40 @@ public class GameActivity extends Activity {
             mGoToMap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // In case the user move back to map in between a running
-                    // Scenario.
+                    // In case the user move back to map in between a running scenario.
                     SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                     mGoToMap.setClickable(false);
+
                     Intent myIntent = new Intent(GameActivity.this, MapActivity.class);
                     myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivityForResult(myIntent, 0);
-                    getmDbHandler()
-                            .setReplayedScenario(mScene.getScenarioName());
+
+                    getmDbHandler().setReplayedScenario(mScene.getScenarioName());
                     mGoToMap.setAlpha((float) 0.0);
                     mReplay.setAlpha((float) 0.0);
                 }
             });
+
             // Replay Mechanics
             mReplay.setAlpha((float) 1.0);
             mReplay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // In case the user moves back to map in between a running
-                    // Scenario.
-
+                    // In case the user moves back to map in between a running scenario.
                     SessionHistory.totalPoints -= SessionHistory.currScenePoints;
                     mReplay.setClickable(false);
+
                     Intent myIntent = new Intent(GameActivity.this, GameActivity.class);
                     myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivityForResult(myIntent, 0);
-                    getmDbHandler()
-                            .setReplayedScenario(mScene.getScenarioName());
+
+                    getmDbHandler().setReplayedScenario(mScene.getScenarioName());
                     mGoToMap.setAlpha((float) 0.0);
                     mReplay.setAlpha((float) 0.0);
                 }
             });
         }
+
         // If completed check if it is last mScene
         if (mPrevScene != null && mPrevScene.getCompleted() == 1) {
             if (mScene.getNextScenarioId() == -1) {
@@ -220,13 +233,13 @@ public class GameActivity extends Activity {
                 startActivity(intent);
             }
         }
+
         SessionHistory.currQId = mScene.getFirstQuestionId();
         mScenarioNameTextView.setText(mScene.getScenarioName());
         updateQA();
     }
 
     private void updateQA() {
-
         mListAdapter.clear();
         getmDbHandler().getAllAnswer(mAnswers, SessionHistory.currQId);
         for (Answer ans : mAnswers) {

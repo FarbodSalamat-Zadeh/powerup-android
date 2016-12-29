@@ -43,7 +43,6 @@ public class AvatarActivity extends Activity implements View.OnClickListener {
             eyeView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -54,7 +53,6 @@ public class AvatarActivity extends Activity implements View.OnClickListener {
             faceView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -65,7 +63,6 @@ public class AvatarActivity extends Activity implements View.OnClickListener {
             clothView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -76,11 +73,10 @@ public class AvatarActivity extends Activity implements View.OnClickListener {
             hairView.setImageResource(photoNameField.getInt(ourRID));
         } catch (NoSuchFieldException | IllegalAccessException
                 | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        if(mDbHandler.getAvatarBag()!= 0){
+        if (mDbHandler.getAvatarBag() != 0) {
             String bagImageName = getResources().getString(R.string.bag);
             bagImageName = bagImageName + mDbHandler.getAvatarBag();
             try {
@@ -88,12 +84,11 @@ public class AvatarActivity extends Activity implements View.OnClickListener {
                 bagView.setImageResource(photoNameField.getInt(ourRID));
             } catch (NoSuchFieldException | IllegalAccessException
                     | IllegalArgumentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
 
-        if(mDbHandler.getAvatarGlasses()!= 0){
+        if (mDbHandler.getAvatarGlasses() != 0) {
             String glassesImageName = getResources().getString(R.string.glasses);
             glassesImageName = glassesImageName + mDbHandler.getAvatarGlasses();
             try {
@@ -101,12 +96,11 @@ public class AvatarActivity extends Activity implements View.OnClickListener {
                 glassesView.setImageResource(photoNameField.getInt(ourRID));
             } catch (NoSuchFieldException | IllegalAccessException
                     | IllegalArgumentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
 
-        if(mDbHandler.getAvatarHat()!= 0){
+        if (mDbHandler.getAvatarHat() != 0) {
             String hatImageName = getResources().getString(R.string.hat);
             hatImageName = hatImageName + mDbHandler.getAvatarHat();
             try {
@@ -114,12 +108,11 @@ public class AvatarActivity extends Activity implements View.OnClickListener {
                 hatView.setImageResource(photoNameField.getInt(ourRID));
             } catch (NoSuchFieldException | IllegalAccessException
                     | IllegalArgumentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
 
-        if(mDbHandler.getAvatarNecklace()!= 0){
+        if (mDbHandler.getAvatarNecklace() != 0) {
             String necklaceImageName = getResources().getString(R.string.necklace);
             necklaceImageName = necklaceImageName + mDbHandler.getAvatarNecklace();
             try {
@@ -127,7 +120,6 @@ public class AvatarActivity extends Activity implements View.OnClickListener {
                 necklaceView.setImageResource(photoNameField.getInt(ourRID));
             } catch (NoSuchFieldException | IllegalAccessException
                     | IllegalArgumentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

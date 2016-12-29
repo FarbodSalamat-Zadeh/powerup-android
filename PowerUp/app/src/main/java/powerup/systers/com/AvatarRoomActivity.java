@@ -1,6 +1,5 @@
 package powerup.systers.com;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -74,7 +73,6 @@ public class AvatarRoomActivity extends Activity {
                     mEyeAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -95,7 +93,6 @@ public class AvatarRoomActivity extends Activity {
                     mEyeAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -119,7 +116,6 @@ public class AvatarRoomActivity extends Activity {
                     mFaceAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -140,7 +136,6 @@ public class AvatarRoomActivity extends Activity {
                     mFaceAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -164,7 +159,6 @@ public class AvatarRoomActivity extends Activity {
                     mClothAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -185,7 +179,6 @@ public class AvatarRoomActivity extends Activity {
                     mClothAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -209,7 +202,6 @@ public class AvatarRoomActivity extends Activity {
                     mHairAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -230,7 +222,6 @@ public class AvatarRoomActivity extends Activity {
                     mHairAvatar.setImageResource(photoNameField.getInt(ourRID));
                 } catch (NoSuchFieldException | IllegalAccessException
                         | IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -240,6 +231,7 @@ public class AvatarRoomActivity extends Activity {
             @Override
             public void onClick(View v) {
                 mDbHandler.open();
+
                 mDbHandler.setAvatarEye(mEye);
                 mDbHandler.setAvatarFace(mFace);
                 mDbHandler.setAvatarHair(mHair);
@@ -248,11 +240,13 @@ public class AvatarRoomActivity extends Activity {
                 mDbHandler.setAvatarGlasses(0);
                 mDbHandler.setAvatarHat(0);
                 mDbHandler.setAvatarNecklace(0);
-                mDbHandler.updateComplete();//set all the complete fields back to 0
-                mDbHandler.updateReplayed();//set all the replayed fields back to 0
-                SessionHistory.totalPoints=0;    //reset the points stored
-                SessionHistory.currSessionId =1;
-                SessionHistory.currScenePoints=0;
+                mDbHandler.updateComplete(); // set all the complete fields back to 0
+                mDbHandler.updateReplayed(); // set all the replayed fields back to 0
+
+                SessionHistory.totalPoints = 0; // reset the points stored
+                SessionHistory.currSessionId = 1;
+                SessionHistory.currScenePoints = 0;
+
                 mDbHandler.resetPurchase();
                 Random r = new Random();
                 int healing = r.nextInt(101 - 1) + 1;

@@ -37,20 +37,26 @@ public class SelectFeaturesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_features);
+
         mDbHandler = new DatabaseHandler(this);
         mDbHandler.open();
+
         selectFeatureInstance = this;
+
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         LinearLayout linearLayoutHandbag = (LinearLayout) findViewById(R.id.linearLayouthandbag);
         LinearLayout linearLayoutGlasses = (LinearLayout) findViewById(R.id.linearLayoutGlasses);
         LinearLayout linearLayoutHat = (LinearLayout) findViewById(R.id.linearLayoutHat);
         LinearLayout linearLayoutNecklace = (LinearLayout) findViewById(R.id.linearLayoutNecklace);
+
         TextView karmaPoints = (TextView) findViewById(R.id.karmaPoints);
         karmaPoints.setText(String.valueOf(SessionHistory.totalPoints));
+
         ImageView eyeView = (ImageView) findViewById(R.id.eyeView);
         ImageView faceView = (ImageView) findViewById(R.id.faceView);
         final ImageView hairView = (ImageView) findViewById(R.id.hairView);
         final ImageView clothView = (ImageView) findViewById(R.id.clothView);
+
         String eyeImageName = getResources().getString(R.string.eye);
         eyeImageName = eyeImageName + mDbHandler.getAvatarEye();
         R.drawable ourRID = new R.drawable();
@@ -93,18 +99,25 @@ public class SelectFeaturesActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        IconRoundCornerProgressBar powerBarHealing = (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
+        IconRoundCornerProgressBar powerBarHealing =
+                (IconRoundCornerProgressBar) findViewById(R.id.powerbarHealing);
         powerBarHealing.setIconImageResource(R.drawable.icon_healing);
         powerBarHealing.setProgress(mDbHandler.getHealing());
-        IconRoundCornerProgressBar powerbarInvisibility = (IconRoundCornerProgressBar) findViewById(R.id.powerbarInvisibility);
-        powerbarInvisibility.setIconImageResource(R.drawable.icon_invisibility);
-        powerbarInvisibility.setProgress(mDbHandler.getInvisibility());
-        IconRoundCornerProgressBar powerbarStrength = (IconRoundCornerProgressBar) findViewById(R.id.powerbarStrength);
-        powerbarStrength.setIconImageResource(R.drawable.icon_strength);
-        powerbarStrength.setProgress(mDbHandler.getStrength());
-        IconRoundCornerProgressBar powerbarTelepathy = (IconRoundCornerProgressBar) findViewById(R.id.powerbarTelepathy);
-        powerbarTelepathy.setIconImageResource(R.drawable.icon_telepathy);
-        powerbarTelepathy.setProgress(mDbHandler.getTelepathy());
+
+        IconRoundCornerProgressBar powerBarInvisibility =
+                (IconRoundCornerProgressBar) findViewById(R.id.powerbarInvisibility);
+        powerBarInvisibility.setIconImageResource(R.drawable.icon_invisibility);
+        powerBarInvisibility.setProgress(mDbHandler.getInvisibility());
+
+        IconRoundCornerProgressBar powerBarStrength =
+                (IconRoundCornerProgressBar) findViewById(R.id.powerbarStrength);
+        powerBarStrength.setIconImageResource(R.drawable.icon_strength);
+        powerBarStrength.setProgress(mDbHandler.getStrength());
+
+        IconRoundCornerProgressBar powerBarTelepathy =
+                (IconRoundCornerProgressBar) findViewById(R.id.powerbarTelepathy);
+        powerBarTelepathy.setIconImageResource(R.drawable.icon_telepathy);
+        powerBarTelepathy.setProgress(mDbHandler.getTelepathy());
 
         final String value = getIntent().getExtras().getString(getResources().getString(R.string.feature));
         Button continueButton = (Button) findViewById(R.id.continueButton);

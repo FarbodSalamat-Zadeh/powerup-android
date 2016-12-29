@@ -17,8 +17,10 @@ public class StartActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         mHasPreviouslyStarted = mPreferences.getBoolean(getString(R.string.preferences_has_previously_started), false);
+
         ImageButton newUserButton = (ImageButton) findViewById(R.id.newUserButtonFirstPage);
         newUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
